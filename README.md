@@ -1,5 +1,5 @@
 # chatxbt-heavypool
-this repo serves as submodule to enable users add new protocols 
+this repo serves as submodule to enable users add new protocols - [Learn more](link-to-contribution-guidelines)
 
 Sure! Below is a basic README.md version of the documentation we've outlined so far:
 
