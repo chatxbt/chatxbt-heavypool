@@ -1,0 +1,42 @@
+{
+    "name": "ltc",
+    "id": "01-ltc",
+    "tags": ["ltc"],
+    "website": "",
+    "description": "this protocol is the first and default protocol in the protocol pool",
+    "explorer": "",
+    "research": "",
+    "contractAddress": "",
+    "abi": "",
+    "symbol": "",
+    "type": "token",
+    "decimals": 18,
+    "status": "active",
+    "mapping": {
+        "swap": {
+           "arg": ["from", "to", "amount"],
+           "method": "protocolSwapMethodName"
+        },
+       "lend": {},
+       "borrow": {},
+       "stake": {}
+    },
+    "links": [
+        {
+            "name": "github",
+            "url": ""
+        },
+        {
+            "name": "twitter",
+            "url": ""
+        },
+        {
+            "name": "reddit",
+            "url": ""
+        },
+        {
+            "name": "whitepaper",
+            "url": ""
+        }
+    ]
+}

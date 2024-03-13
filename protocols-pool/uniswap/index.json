@@ -1,0 +1,50 @@
+{
+    "name": "uniswap",
+    "id": "01-uniswap",
+    "tags": ["uniswap"],
+    "website": "",
+    "description": "uniswap",
+    "explorer": "",
+    "research": "",
+    "contractAddress": {
+        "goerli": "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D"
+    },
+    "abi": [
+        "function swapExactTokensForTokensSupportingFeeOnTransferTokens(uint amountIn,uint amountOutMin,address[] calldata path,address to,uint deadline) external",
+        "function swapExactETHForTokensSupportingFeeOnTransferTokens(uint amountOutMin,address[] calldata path,address to,uint deadline) external payable",
+        "function swapExactTokensForETHSupportingFeeOnTransferTokens(uint amountIn, uint amountOutMin, address[] calldata path, address to, uint deadline) external",
+        "function getAmountsIn(uint amountOut, address[] calldata path) external view returns (uint[] memory amounts)",
+        "function getAmountsOut(uint amountIn, address[] memory path) external view returns (uint[] memory amounts)",
+        "function addLiquidityETH(address token, uint amountTokenDesired, uint amountTokenMin, uint amountETHMin, address to, uint deadline) external payable",
+        "function removeLiquidity(address tokenA, address tokenB, uint liquidity, uint amountAMin, uint amountBMin, address to, uint deadline) external"
+      ],
+    "symbol": "",
+    "type": "dex",
+    "decimals": 18,
+    "status": "active",
+    "mapping": {
+        "swap": {
+           "arg": ["amountsOut", ["fromToken", "toToken"], "receiverAddress", "date"],
+           "method": "swapExactETHForTokensSupportingFeeOnTransferTokens",
+           "customCall": "async ({signer, receiverAddress, amountIn, toToken, fromToken, abi, router, chain, contract, ethers}) => { let tx;const tokens = {'usdt': '0xD1Ca0b80b188Ad76955E05d36C20C597309aD5b8','dai': '0xdc31Ee1784292379Fbb2964b3B9C4124D8F89C60','eth': '0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6'};const path = [tokens[fromToken.toLowerCase()], tokens[toToken.toLowerCase()]];const amountsOut = await contract.getAmountsOut(ethers.parseEther(String(amountIn)), path);const now = new Date();if(fromToken.toLowerCase() === 'eth'){tx = await contract.swapExactETHForTokensSupportingFeeOnTransferTokens(amountsOut[1],path,receiverAddress,new Date(now.setMinutes(now.getMinutes() + 5)).getTime(), { value: ethers.parseEther(String(amountIn)) });}else{tx = await contract.swapExactTokensForETHSupportingFeeOnTransferTokens(amountsOut[0],0,path,receiverAddress,new Date(now.setMinutes(now.getMinutes() + 5)).getTime(),{gasLimit: 4000000});}tx = await tx.wait(); return {status: true, message: 'swapped successfully', data: tx};}"
+        }
+    },
+    "links": [
+        {
+            "name": "github",
+            "url": ""
+        },
+        {
+             "name": "twitter",
+            "url": ""
+        },
+        {
+            "name": "reddit",
+            "url": ""
+        },
+        {
+            "name": "whitepaper",
+            "url": ""
+        }
+    ]
+}

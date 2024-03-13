@@ -1,0 +1,42 @@
+{
+    "name": "usdt",
+    "id": "01-usdt",
+    "tags": ["usdt"],
+    "website": "",
+    "description": "this protocol is the first and default protocol in the protocol pool",
+    "explorer": "",
+    "research": "",
+    "contractAddress": "0xD1Ca0b80b188Ad76955E05d36C20C597309aD5b8",
+    "abi": "",
+    "symbol": "",
+    "type": "token",
+    "decimals": 18,
+    "status": "active",
+    "mapping": {
+        "swap": {
+           "arg": ["from", "to", "amount"],
+           "method": "protocolSwapMethodName"
+        },
+       "lend": {},
+       "borrow": {},
+       "stake": {}
+    },
+    "links": [
+        {
+            "name": "github",
+            "url": ""
+        },
+        {
+            "name": "twitter",
+            "url": ""
+        },
+        {
+            "name": "reddit",
+            "url": ""
+        },
+        {
+            "name": "whitepaper",
+            "url": ""
+        }
+    ]
+}

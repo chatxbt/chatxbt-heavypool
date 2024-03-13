@@ -1,0 +1,42 @@
+{
+    "name": "1inch",
+    "id": "01-inch",
+    "tags": ["1inch", "oneinch"],
+    "website": "",
+    "description": "1ich protocol is for swapping",
+    "explorer": "",
+    "research": "",
+    "contractAddress": {
+        "goerli": "0x1111111254EEB25477B68fb85Ed929f73A960582"
+    },
+    "abi": ["function swapExactTokensForTokens(uint256, uint256, address[], address, uint256)"],
+    "symbol": "",
+    "type": "dex",
+    "decimals": 18,
+    "status": "active",
+    "mapping": {
+        "swap": {
+           "arg": ["amount", "amountOutMin", ["tokenIn", "tokenOut"], "recipient", "deadline"],
+           "method": "swapExactTokensForTokens",
+           "customCall": "async ({ signer, receiverAddress, amountIn, toToken, fromToken, abi, router, chain, contract, ethers }) => {const recipient = receiverAddress; const tokenIn = '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2'; const tokenOut = '0xdAC17F958D2ee523a2206206994597C13D831ec7'; const slippageAdjustedMinAmountOut = 0; const deadline = Math.floor(Date.now() / 1000) + 60 * 5; let tx = await contract.swapExactTokensForTokens(ethers.parseUnits(amountIn, 18),slippageAdjustedMinAmountOut,[tokenIn, tokenOut],recipient,deadline,{gasLimit: 4000000});tx = await tx.wait(); return {status: true, message: 'swapped successfully', data: tx};}"
+        }
+    },
+    "links": [
+        {
+            "name": "github",
+            "url": ""
+        },
+        {
+            "name": "twitter",
+            "url": ""
+        },
+        {
+            "name": "reddit",
+            "url": ""
+        },
+        {
+            "name": "whitepaper",
+            "url": ""
+        }
+    ]
+}

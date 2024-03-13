@@ -1,0 +1,42 @@
+{
+    "name": "eth",
+    "id": "01-eth",
+    "tags": ["eth","ethereum"],
+    "website": "",
+    "description": "this protocol is the first and default protocol in the protocol pool",
+    "explorer": "",
+    "research": "",
+    "contractAddress": "0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6",
+    "abi": "",
+    "symbol": "",
+    "type": "token",
+    "decimals": 18,
+    "status": "active",
+    "mapping": {
+        "swap": {
+           "arg": ["from", "to", "amount"],
+           "method": "protocolSwapMethodName"
+        },
+       "lend": {},
+       "borrow": {},
+       "stake": {}
+    },
+    "links": [
+        {
+            "name": "github",
+            "url": ""
+        },
+        {
+            "name": "twitter",
+            "url": ""
+        },
+        {
+            "name": "reddit",
+            "url": ""
+        },
+        {
+            "name": "whitepaper",
+            "url": ""
+        }
+    ]
+}

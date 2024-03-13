@@ -1,0 +1,42 @@
+{
+    "name": "busd",
+    "id": "01-busd",
+    "tags": ["busd"],
+    "website": "",
+    "description": "this protocol is the first and default protocol in the protocol pool",
+    "explorer": "",
+    "research": "",
+    "contractAddress": "0xdc31Ee1784292379Fbb2964b3B9C4124D8F89C60",
+    "abi": "",
+    "symbol": "",
+    "type": "token",
+    "decimals": 18,
+    "status": "active",
+    "mapping": {
+        "swap": {
+           "arg": ["from", "to", "amount"],
+           "method": "protocolSwapMethodName"
+        },
+       "lend": {},
+       "borrow": {},
+       "stake": {}
+    },
+    "links": [
+        {
+            "name": "github",
+            "url": ""
+        },
+        {
+            "name": "twitter",
+            "url": ""
+        },
+        {
+            "name": "reddit",
+            "url": ""
+        },
+        {
+            "name": "whitepaper",
+            "url": ""
+        }
+    ]
+}

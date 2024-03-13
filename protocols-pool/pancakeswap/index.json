@@ -1,0 +1,47 @@
+{
+    "name": "pancakeswap",
+    "id": "01-pancakeswap",
+    "tags": ["pancakeswap"],
+    "website": "",
+    "description": "pancakeswap",
+    "explorer": "",
+    "research": "",
+    "contractAddress": "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D",
+    "abi": [
+        "function swapExactTokensForTokensSupportingFeeOnTransferTokens(uint amountIn,uint amountOutMin,address[] calldata path,address to,uint deadline) external",
+        "function swapExactETHForTokensSupportingFeeOnTransferTokens(uint amountOutMin,address[] calldata path,address to,uint deadline) external payable",
+        "function swapExactTokensForETHSupportingFeeOnTransferTokens(uint amountIn, uint amountOutMin, address[] calldata path, address to, uint deadline) external",
+        "function getAmountsIn(uint amountOut, address[] calldata path) external view returns (uint[] memory amounts)",
+        "function getAmountsOut(uint amountIn, address[] memory path) external view returns (uint[] memory amounts)",
+        "function addLiquidityETH(address token, uint amountTokenDesired, uint amountTokenMin, uint amountETHMin, address to, uint deadline) external payable",
+        "function removeLiquidity(address tokenA, address tokenB, uint liquidity, uint amountAMin, uint amountBMin, address to, uint deadline) external"
+      ],
+    "symbol": "",
+    "type": "dex",
+    "decimals": 18,
+    "status": "active",
+    "mapping": {
+        "swap": {
+           "arg": ["amountsOut", ["fromToken", "toToken"], "receiverAddress", "date"],
+           "method": "swapExactETHForTokensSupportingFeeOnTransferTokens"
+        }
+    },
+    "links": [
+        {
+            "name": "github",
+            "url": ""
+        },
+        {
+            "name": "twitter",
+            "url": ""
+        },
+        {
+            "name": "reddit",
+            "url": ""
+        },
+        {
+            "name": "whitepaper",
+            "url": ""
+        }
+    ]
+}
