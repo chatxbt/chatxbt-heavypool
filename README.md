@@ -54,6 +54,34 @@ Here's an example template for adding a new protocol:
 
 Replace the placeholder values with the relevant information for the protocol you are adding.
 
+
+## Method Mappings
+
+The mapping section of the protocol JSON file allows users to dynamically map NLP responses to actual functions within the application. Here's how it works:
+
+```json
+"mapping": {
+    "swap": {
+        // Arguments required for the method call
+        "arg": ["amount", "amountOutMin", ["tokenIn", "tokenOut"], "recipient", "deadline"],
+        // The method to be called
+        "method": "swapExactTokensForTokens",
+        // Custom JavaScript function for executing the method
+        "customCall": "async ({ signer, receiverAddress, amountIn, toToken, fromToken, abi, router, chain, contract, ethers }) => {const recipient = receiverAddress; const tokenIn = '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2'; const tokenOut = '0xdAC17F958D2ee523a2206206994597C13D831ec7'; const slippageAdjustedMinAmountOut = 0; const deadline = Math.floor(Date.now() / 1000) + 60 * 5; let tx = await contract.swapExactTokensForTokens(ethers.parseUnits(amountIn, 18),slippageAdjustedMinAmountOut,[tokenIn, tokenOut],recipient,deadline,{gasLimit: 4000000});tx = await tx.wait(); return {status: true, message: 'swapped successfully', data: tx};}"
+    },
+    // Other mappings...
+}
+```
+
+In the `mapping` section, users can specify actions (e.g., "swap") and define:
+
+- **arg**: Arguments required for the method call.
+- **method**: The method to be called within the application.
+- **customCall**: A custom JavaScript function for executing the method. This function enables users to create a custom execution flow using the provided arguments such as `signer`, `receiverAddress`, `amountIn`, `toToken`, `fromToken`, `abi`, `router`, `chain`, `contract`, and `ethers`.
+
+Users can write custom execution flows tailored to their specific requirements, leveraging the provided arguments to interact with the protocol's smart contract and perform the desired actions.
+
+
 ## Additional Resources
 
 - [Contribution Guidelines](link-to-contribution-guidelines)
