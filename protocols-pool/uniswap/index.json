@@ -7,7 +7,8 @@
     "explorer": "",
     "research": "",
     "contractAddress": {
-        "goerli": "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D"
+        "goerli": "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D",
+        "chatxbt": "0x7a250d5630b4cf539739df2c5dacb4c659f2488d"
     },
     "abi": [
         "function swapExactTokensForTokensSupportingFeeOnTransferTokens(uint amountIn,uint amountOutMin,address[] calldata path,address to,uint deadline) external",

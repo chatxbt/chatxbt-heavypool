@@ -7,7 +7,9 @@
     "explorer": "",
     "research": "",
     "contractAddress": {
-        "goerli": "0x1111111254EEB25477B68fb85Ed929f73A960582"
+        "goerli": "0x1111111254EEB25477B68fb85Ed929f73A960582",
+        "sepolia": "",
+        "chatxbt": "0x1111111254fb6c44bac0bed2854e76f90643097"
     },
     "abi": ["function swapExactTokensForTokens(uint256, uint256, address[], address, uint256)"],
     "symbol": "",

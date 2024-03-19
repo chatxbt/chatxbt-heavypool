@@ -7,7 +7,8 @@
     "explorer": "",
     "research": "",
     "contractAddress": {
-        "goerli": "0x3E4a3a4796d16c0Cd582C382691998f7c06420B6"
+        "goerli": "0x3E4a3a4796d16c0Cd582C382691998f7c06420B6",
+        "chatxbt": "0x3E4a3a4796d16c0Cd582C382691998f7c06420B6"
     },
     "abi": ["function sendToL2(uint256 chainId, address recipient, uint256 amount, uint256 amountOutMin, uint256 deadline, address relayer, uint256 relayerFee) external payable"],
     "symbol": "",
@@ -18,7 +19,7 @@
         "bridge": {
            "arg": ["chainId", "recipient", "amount", "amountOutMin", "deadline", "relayer", "relayerFee"],
            "method": "sendToL2",
-           "customCall": "async ({signer, receiverAddress, amountIn, toToken, fromToken, abi, router, chain, contract, ethers, toNetwork = 80001}) => { let tx;const bridges = { goerli: { 'usdt': '0x3E4a3a4796d16c0Cd582C382691998f7c06420B6', 'eth': '0xC8A4FB931e8D77df8497790381CA7d228E68a41b'} }; const router2 = bridges.goerli[fromToken?.toLowerCase()]; if (!router2) { return { status: false, message: `bridge asset: only assets allowed on this network is eth and usdt`, }; } const contract2 = new ethers.Contract( router2, abi, signer ); const deadline = Math.floor(Date.now() / 1000) + 60 * 5; tx = await contract2.sendToL2( toNetwork, receiverAddress, ethers.parseEther(amountIn), ethers.parseEther(amountIn), deadline, '0x0000000000000000000000000000000000000000', 0, { gasLimit: 4000000, value: ethers.parseEther(amountIn), } ); tx = await tx.wait(); return {status: true, message: 'Your asset has been bridged successfully', data: tx}; }"
+           "customCall": "async ({signer, receiverAddress, amountIn, toToken, fromToken, abi, router, chain, contract, ethers, toNetwork = 80001}) => { let tx;const bridges = { goerli: { 'usdt': '0x3E4a3a4796d16c0Cd582C382691998f7c06420B6', 'eth': '0xb8901acB165ed027E32754E0FFe830802919727f'} }; const router2 = bridges.goerli[fromToken?.toLowerCase()]; if (!router2) { return { status: false, message: `bridge asset: only assets allowed on this network is eth and usdt`, }; } const contract2 = new ethers.Contract( router2, abi, signer ); const deadline = Math.floor(Date.now() / 1000) + 60 * 5; tx = await contract2.sendToL2( toNetwork, receiverAddress, ethers.parseEther(amountIn), ethers.parseEther(amountIn), deadline, '0x0000000000000000000000000000000000000000', 0, { gasLimit: 4000000, value: ethers.parseEther(amountIn), } ); tx = await tx.wait(); return {status: true, message: 'Your asset has been bridged successfully', data: tx}; }"
         }
     },
     "links": [
