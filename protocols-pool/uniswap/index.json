@@ -8,6 +8,7 @@
     "research": "",
     "contractAddress": {
         "goerli": "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D",
+        "sepolia": "0xb26b2de65d07ebb5e54c7f6282424d3be670e1f0",
         "chatxbt": "0x7a250d5630b4cf539739df2c5dacb4c659f2488d"
     },
     "abi": [
