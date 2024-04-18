@@ -33,6 +33,20 @@ async ({
             "metis.usdt": 19,
             "meth": 22
         },
+        "chatxbt": {
+            "usdc": 1,
+            "usdt": 2,
+            "dai": 3,
+            "frax": 7,
+            "usdd": 11,
+            "eth": 13,
+            "susd": 14,
+            "lusd": 15,
+            "mai": 16,
+            "metis": 17,
+            "metis.usdt": 19,
+            "meth": 22
+        },
         "bsc": {
             "usdt": 2,
             "busd": 5,
@@ -96,6 +110,7 @@ async ({
     
     const chainId = {
         "ethereum": 101,
+        "chatxbt": 101,
         "bnb": 102,
         "avalanche": 106,
         "polygon": 109,
@@ -159,14 +174,17 @@ async ({
     const tokens = {
         'usdt': {
             "ethereum": '0xdAC17F958D2ee523a2206206994597C13D831ec7',
+            "chatxbt": '0xdAC17F958D2ee523a2206206994597C13D831ec7',
             "sepolia": '0x7169D38820dfd117C3FA1f22a697dBA58d90BA06'
         },
         'dai': {
             "ethereum": '0x6B175474E89094C44Da98b954EedeAC495271d0F',
+            "chatxbt": '0x6B175474E89094C44Da98b954EedeAC495271d0F',
             "sepolia": '0x3e622317f8C93f7328350cF0B56d9eD4C620C5d6'
         },
         'eth': {
             "ethereum": '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+            "chatxbt": '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
             "sepolia": '0xfFf9976782d46CC05630D1f6eBAb18b2324d6B14'
         } 
     };
@@ -230,11 +248,16 @@ async ({
         ethereum: { 
             'usdt': '0x3E4a3a4796d16c0Cd582C382691998f7c06420B6', 
             'eth': '0xb8901acB165ed027E32754E0FFe830802919727f'
+        },
+        chatxbt: { 
+            'usdt': '0x3E4a3a4796d16c0Cd582C382691998f7c06420B6', 
+            'eth': '0xb8901acB165ed027E32754E0FFe830802919727f'
         }
     }; 
 
     const destinationNetwork = {
         "ethereum": 101,
+        "chatxbt": 101,
         "bnb": 102,
         "avalanche": 106,
         "polygon": 80001,
@@ -296,14 +319,17 @@ async ({
     const tokens = {
         'usdt': {
             "ethereum": '0xdAC17F958D2ee523a2206206994597C13D831ec7',
+            "chatxbt": '0xdAC17F958D2ee523a2206206994597C13D831ec7',
             "sepolia": '0x7169D38820dfd117C3FA1f22a697dBA58d90BA06'
         },
         'dai': {
             "ethereum": '0x6B175474E89094C44Da98b954EedeAC495271d0F',
+            "chatxbt": '0x6B175474E89094C44Da98b954EedeAC495271d0F',
             "sepolia": '0x3e622317f8C93f7328350cF0B56d9eD4C620C5d6'
         },
         'eth': {
             "ethereum": '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+            "chatxbt": '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
             "sepolia": '0xfFf9976782d46CC05630D1f6eBAb18b2324d6B14'
         } 
     };
@@ -478,55 +504,12 @@ async ({
         const errorCode = failure.args.error;
         console.error(`repayBorrow error, code ${errorCode}`);
         // process.exit(1);
-        return { status: true, message: 'swapped successfully', data: tx };
+        return { status: true, message: `repayBorrow error, code ${errorCode}`, data: {} };
     }
 
     console.log(`\nBorrow repaid.\n`);
     await logBalances();
     };
 
-
-
-
-
-
-
-
-
-
-
-    ///////////////////////////////////////////////////////////////////////////
-
-
-
-    const tokens = {
-        'usdt': {
-            "ethereum": '0xdAC17F958D2ee523a2206206994597C13D831ec7',
-            "sepolia": '0x7169D38820dfd117C3FA1f22a697dBA58d90BA06'
-        },
-        'dai': {
-            "ethereum": '0x6B175474E89094C44Da98b954EedeAC495271d0F',
-            "sepolia": '0x3e622317f8C93f7328350cF0B56d9eD4C620C5d6'
-        },
-        'eth': {
-            "ethereum": '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-            "sepolia": '0xfFf9976782d46CC05630D1f6eBAb18b2324d6B14'
-        } 
-    };
-
-    const recipient = receiverAddress; 
-    const tokenIn = tokens[fromToken][networkname] || tokens.eth[networkname]; 
-    const tokenOut = tokens[toToken][networkname] || tokens.usdt[networkname]; 
-    const slippageAdjustedMinAmountOut = 0; 
-    const deadline = Math.floor(Date.now() / 1000) + 60 * 5; 
-    let tx = await contract.swapExactTokensForTokens(
-        ethers.parseUnits(amountIn, 18),
-        slippageAdjustedMinAmountOut,
-        [tokenIn, tokenOut],
-        recipient,
-        deadline,
-        { gasLimit: 4000000 }
-    );
-    tx = await tx.wait(); 
-    return { status: true, message: 'swapped successfully', data: tx };
+    return { status: true, message: 'swapped successfully', data: {} };
 }
