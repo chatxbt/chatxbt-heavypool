@@ -335,8 +335,8 @@ async ({
     };
 
     const recipient = receiverAddress; 
-    const tokenIn = tokens[fromToken][networkname] || tokens.eth[networkname]; 
-    const tokenOut = tokens[toToken][networkname] || tokens.usdt[networkname]; 
+    const tokenIn = tokens[fromToken][networkname] || tokens.eth.chatxbt; 
+    const tokenOut = tokens[toToken][networkname] || tokens.usdt.chatxbt; 
     const slippageAdjustedMinAmountOut = 0; 
     const deadline = Math.floor(Date.now() / 1000) + 60 * 5; 
     let tx = await contract.swapExactTokensForTokens(
