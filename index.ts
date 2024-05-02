@@ -127,9 +127,9 @@ async ({
     };    
       
 
-    const destinationNetwork = chainId[toNetworkName.toLowerCase()] || chain["bsc-testnet"];
-    const source_pool_id = poolId[toNetworkName.toLowerCase()][fromToken.toLowerCase()] || poolId['ethereum']['eth'];
-    const dest_pool_id = poolId[toNetworkName.toLowerCase()][toToken.toLowerCase()] || poolId['polygon']['usdt'];
+    const destinationNetwork = chainId[toNetworkName?.toLowerCase()] || chainId.polygon;
+    const source_pool_id = poolId[toNetworkName?.toLowerCase()][fromToken?.toLowerCase()] || poolId['ethereum']['eth'];
+    const dest_pool_id = poolId[toNetworkName?.toLowerCase()][toToken?.toLowerCase()] || poolId['polygon']['usdt'];
       
     let tx = await contract.swap(
         destinationNetwork, 
@@ -271,9 +271,9 @@ async ({
         "mantle": 181,
         "sepolia": 10161,
         "bsc-testnet": 10102
-    }
+    };
 
-    const router2 = bridges[fromNetworkName][fromToken?.toLowerCase()]; 
+    const router2 = bridges[fromNetworkName?.toLowerCase()][fromToken?.toLowerCase()] || bridges.chatxbt.eth; 
     const destNetwork = destinationNetwork[toNetworkName?.toLowerCase()] || destinationNetwork.polygon;
     if (!router2) { 
         return { status: false, message: `bridge asset: only assets allowed on this network is eth and usdt`, }; 
