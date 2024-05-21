@@ -15,59 +15,25 @@ async ({
     toNetworkId = 80001,
     toNetworkName,
     lib,
-    environment = 'test'
+    environment = 'test',
+    axios,
+    oauth,
+    action,
+    quantity
 }) => { 
-    let tx;
-    const bridges = { 
-        goerli: { 
-            'usdt': '0x3E4a3a4796d16c0Cd582C382691998f7c06420B6', 
-            'eth': '0xb8901acB165ed027E32754E0FFe830802919727f'
-        },
-        ethereum: { 
-            'usdt': '0x3E4a3a4796d16c0Cd582C382691998f7c06420B6', 
-            'eth': '0xb8901acB165ed027E32754E0FFe830802919727f'
-        },
-        chatxbt: { 
-            'usdt': '0x3E4a3a4796d16c0Cd582C382691998f7c06420B6', 
-            'eth': '0xb8901acB165ed027E32754E0FFe830802919727f'
-        }
-    }; 
+    const baseUrl = 'https://chatxbt-2y3i3.ondigitalocean.app/api/v1/binance-ticker-price';
 
-    const destinationNetwork = {
-        'ethereum': 101,
-        'chatxbt': 101,
-        'bnb': 102,
-        'avalanche': 106,
-        'polygon': 80001,
-        'arbitrum': 110,
-        'optimism': 111,
-        'fantom': 112,
-        'metis': 151,
-        'base': 184,
-        'linea': 183,
-        'kava': 177,
-        'mantle': 181,
-        'sepolia': 10161,
-        'bsc-testnet': 10102
+    const options = {
+        headers: {'Authorization': `Bearer ${oauth}`}
     };
 
-    const router2 = bridges[fromNetworkName?.toLowerCase()][fromToken?.toLowerCase()] || bridges.chatxbt.eth; 
-    const destNetwork = destinationNetwork[toNetworkName?.toLowerCase()] || destinationNetwork.polygon;
-    if (!router2) { 
-        return { status: false, message: `bridge asset: only assets allowed on this network is eth and usdt`, }; 
-    } 
-    const contract2 = new ethers.Contract( router2, abi, signer ); 
-    const deadline = Math.floor(Date.now() / 1000) + 60 * 5; 
-    tx = await contract2.sendToL2( 
-        destNetwork,
-        receiverAddress, 
-        ethers.parseEther(amountIn), 
-        ethers.parseEther(amountIn), 
-        deadline, 
-        '0x0000000000000000000000000000000000000000', 
-        0, 
-        { gasLimit: 4000000, value: ethers.parseEther(amountIn), } 
-    ); 
-    tx = await tx.wait(); 
-    return {status: true, message: `Your asset has been bridged from ${networkname} to ${toNetworkName}  successfully`, data: tx}; 
+    const { data } = axios.post(baseUrl, {
+        symbol: fromToken,
+        action,
+        quantity
+    }, options);
+
+    console.log(data);
+ 
+    return {status: data?.status || false, message: data?.message, data: data?.data || {}}; 
 }

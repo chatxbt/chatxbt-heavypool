@@ -1,0 +1,49 @@
+{
+    "name": "binance",
+    "id": "01-binance",
+    "tags": ["binance"],
+    "website": "",
+    "description": "binance",
+    "explorer": "",
+    "research": "",
+    "contractAddress": {
+        "goerli": "0x1111111254EEB25477B68fb85Ed929f73A960582",
+        "sepolia": "",
+        "chatxbt": "0x1111111254fb6c44bac0bed2854e76f90643097d"
+    },
+    "abi": ["function swapExactTokensForTokens(uint256, uint256, address[], address, uint256)"],
+    "symbol": "",
+    "type": "api",
+    "decimals": 18,
+    "status": "active",
+    "mapping": {
+        "order": {
+           "arg": ["oauth", "quantity", "axios"],
+           "method": "order",
+           "customCall": "async ({ signer, receiverAddress, amountIn, toToken, fromToken, abi, router, chain, networkname, contract, ethers, fromNetworkId = 109, fromNetworkName, toNetworkId = 80001, toNetworkName, lib, environment = 'test', axios, oauth, action, quantity }) => { const baseUrl = 'https://chatxbt-2y3i3.ondigitalocean.app/api/v1/binance-swap'; const options = { headers: {'Authorization': `Bearer ${oauth}`} }; const { data } = axios.post(baseUrl, { symbol: fromToken, action, quantity }, options); console.log(data); return {status: data?.status || false, message: data?.message, data: data?.data || {}}; }"
+        },
+        "ticker-price": {
+            "arg": ["oauth", "quantity", "axios"],
+            "method": "ticker-price",
+            "customCall": "async ({ signer, receiverAddress, amountIn, toToken, fromToken, abi, router, chain, networkname, contract, ethers, fromNetworkId = 109, fromNetworkName, toNetworkId = 80001, toNetworkName, lib, environment = 'test', axios, oauth, action, quantity }) => { const baseUrl = 'https://chatxbt-2y3i3.ondigitalocean.app/api/v1/binance-ticker-price'; const options = { headers: {'Authorization': `Bearer ${oauth}`} }; const { data } = axios.post(baseUrl, { symbol: fromToken, action, quantity }, options); console.log(data); return {status: data?.status || false, message: data?.message, data: data?.data || {}}; }"
+         }
+    },
+    "links": [
+        {
+            "name": "github",
+            "url": ""
+        },
+        {
+            "name": "twitter",
+            "url": ""
+        },
+        {
+            "name": "reddit",
+            "url": ""
+        },
+        {
+            "name": "whitepaper",
+            "url": ""
+        }
+    ]
+}

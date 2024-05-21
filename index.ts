@@ -513,3 +513,101 @@ async ({
 
     return { status: true, message: 'swapped successfully', data: {} };
 }
+
+/////// 1inch set limit order ////////////
+
+async ({ 
+    signer, 
+    receiverAddress, 
+    amountIn, 
+    toToken, 
+    fromToken, 
+    abi, 
+    router, 
+    chain, 
+    networkname,
+    contract, 
+    ethers, 
+    fromNetworkId = 109,
+    fromNetworkName,
+    toNetworkId = 80001,
+    toNetworkName,
+    lib,
+    environment = 'test' 
+}) => {
+    const tokens = {
+        'usdt': {
+            "ethereum": '0xdAC17F958D2ee523a2206206994597C13D831ec7',
+            "chatxbt": '0xdAC17F958D2ee523a2206206994597C13D831ec7',
+            "sepolia": '0x7169D38820dfd117C3FA1f22a697dBA58d90BA06'
+        },
+        'dai': {
+            "ethereum": '0x6B175474E89094C44Da98b954EedeAC495271d0F',
+            "chatxbt": '0x6B175474E89094C44Da98b954EedeAC495271d0F',
+            "sepolia": '0x3e622317f8C93f7328350cF0B56d9eD4C620C5d6'
+        },
+        'eth': {
+            "ethereum": '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+            "chatxbt": '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+            "sepolia": '0xfFf9976782d46CC05630D1f6eBAb18b2324d6B14'
+        } 
+    };
+
+    const recipient = receiverAddress; 
+    const tokenIn = tokens[fromToken][networkname] || tokens.eth.chatxbt; 
+    const tokenOut = tokens[toToken][networkname] || tokens.usdt.chatxbt; 
+
+    const amountInn = ethers.parseUnits('1.0', tokenIn);
+    const amountOut = ethers.parseUnits('0.5', tokenOut);
+    const price = ethers.parseUnits('250.0', tokenOut);
+
+    const limitOrderContract = new ethers.Contract(
+        '0x64354cf9134464f35733f44a634057935e98bd21',
+        [
+          {
+            "inputs": [
+              {
+                "internalType": "address",
+                "name": "tokenIn",
+                "type": "address"
+              },
+              {
+                "internalType": "address",
+                "name": "tokenOut",
+                "type": "address"
+              },
+              {
+                "internalType": "uint256",
+                "name": "amountIn",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "amountOut",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "price",
+                "type": "uint256"
+              }
+            ],
+            "name": "createLimitOrder",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+          }
+        ],
+        signer
+    );
+
+    let tx = await limitOrderContract.createLimitOrder(
+        tokenIn,
+        tokenOut,
+        amountIn,
+        amountOut,
+        price
+    )
+    tx = await tx.wait(); 
+    return { status: true, message: 'order placed successfully', data: tx };
+}
