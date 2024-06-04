@@ -1,0 +1,58 @@
+{
+    "name": "across",
+    "id": "01-across",
+    "tags": ["across"],
+    "website": "",
+    "description": "across protocol is for cross chain swapping",
+    "explorer": "",
+    "research": "",
+    "contractAddress": {
+        "goerli": "0x1111111254EEB25477B68fb85Ed929f73A960582",
+        "sepolia": "0x2836045A50744FB50D3d04a9C8D18aD7B5012102",
+        "chatxbt": "0xc186fa914353c44b2e33ebe05f21846f1048beda"
+    },
+    "abi": [
+        {
+            "constant": false,
+            "inputs": [
+                {"name": "token", "type": "address"},
+                {"name": "amount", "type": "uint256"},
+                {"name": "destinationChainId", "type": "uint256"},
+                {"name": "destinationAddress", "type": "address"}
+            ],
+            "name": "deposit",
+            "outputs": [],
+            "type": "function"
+        }
+    ],
+    
+    "symbol": "",
+    "type": "dex",
+    "decimals": 18,
+    "status": "active",
+    "mapping": {
+        "bridge": {
+           "arg": ["amount", "amountOutMin", ["tokenIn", "tokenOut"], "recipient", "deadline"],
+           "method": "swap",
+           "customCall": "async ({ signer, receiverAddress, amountIn, toToken, fromToken, abi, router, chain, networkname, contract, ethers, fromNetworkId = 109, fromNetworkName, toNetworkId = 80001, toNetworkName, lib, environment = 'test' }) => { let tx; const bridges = { goerli: { 'usdt': '0x3E4a3a4796d16c0Cd582C382691998f7c06420B6', 'eth': '0xb8901acB165ed027E32754E0FFe830802919727f' }, ethereum: { 'usdt': '0x3E4a3a4796d16c0Cd582C382691998f7c06420B6', 'eth': '0xb8901acB165ed027E32754E0FFe830802919727f' }, chatxbt: { 'usdt': '0x3E4a3a4796d16c0Cd582C382691998f7c06420B6', 'eth': '0xb8901acB165ed027E32754E0FFe830802919727f' } }; const destinationNetwork = { 'ethereum': 101, 'chatxbt': 101, 'bnb': 102, 'avalanche': 106, 'polygon': 80001, 'arbitrum': 110, 'optimism': 111, 'fantom': 112, 'metis': 151, 'base': 184, 'linea': 183, 'kava': 177, 'mantle': 181, 'sepolia': 10161, 'bsc-testnet': 10102 }; const assetAddress = '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48'; const amount = ethers.utils.parseUnits('1.0', 6); // Example: 1 USDC const destinationChainId = 999; // Example: Base chain ID const destinationAddress = receiverAddress; tx = await contract.deposit(assetAddress, amount, destinationChainId, destinationAddress, { gasLimit: 1000000, }); tx = await tx.wait(); return {status: true, message: `Your asset has been bridged from ${networkname} to ${toNetworkName}  successfully`, data: tx}; }"
+        }
+    },
+    "links": [
+        {
+            "name": "github",
+            "url": ""
+        },
+        {
+            "name": "twitter",
+            "url": ""
+        },
+        {
+            "name": "reddit",
+            "url": ""
+        },
+        {
+            "name": "whitepaper",
+            "url": ""
+        }
+    ]
+}
